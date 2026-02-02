@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Tasnuva ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+      padding-top: 40px;
+      overflow: hidden;
+    }
+
+    /* Flashing name */
+    .name {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        opacity: 0.4;
+        text-shadow: 0 0 5px #fff;
+      }
+      to {
+        opacity: 1;
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff2d55;
+      }
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+
+    button {
+      background: #ff2d55;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      margin-top: 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    #message {
+      font-size: 20px;
+      margin-top: 25px;
+      padding: 10px;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-700px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Feedback box */
+    .feedback {
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    textarea {
+      width: 80%;
+      max-width: 300px;
+      height: 80px;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      font-size: 14px;
+      resize: none;
+    }
+
+    .note {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="name">Tasnuva 💕</div>
+  <h1>Tap & Feel My Love</h1>
+  <p style="opacity:0.9">(First tap starts music 🎵)</p>
+
+  <button onclick="playGame()">Tap ❤️</button>
+
+  <div id="message"></div>
+
+  <!-- Feedback -->
+  <div class="feedback">
+    <p>আমার জন্য কি মনে হলো? 💬</p>
+    <textarea placeholder="আপনি যা ভাবেন লিখুন..."></textarea>
+    <div class="note">(আমি পরে এটি দেখব 💙)</div>
+  </div>
+
+  <!-- Music -->
+  <audio id="bgm" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_8f8c6d2c7e.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const messages = [
+      "Tasnuva, তুমি আমার সবথেকে প্রিয় 💙",
+      "তোমার হাসি আমার দিনকে সুন্দর করে 🌸",
+      "তোমাকে ভাবলে শান্তি অনুভব করি 🌙",
+      "তুমি আমার জীবনের বিশেষ অংশ 💕",
+      "আমি সবসময় তোমার পাশে আছি 🫶",
+      "তুমি যদি হাসো, আমি খুশি 😊",
+      "আমার হৃদয় শুধু তোমার জন্য বয়ে যাচ্ছে ❤️",
+      "তোমার জন্য আমার ভালোবাসা অশেষ 💌"
+    ];
+
+    let started = false;
+
+    function playGame() {
+      const music = document.getElementById("bgm");
+      if (!started) {
+        music.play();
+        started = true;
+      }
+
+      const random = Math.floor(Math.random() * messages.length);
+      document.getElementById("message").innerText = messages[random];
+
+      createHeart();
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+  </script>
+
+</body>
+</html>
+
